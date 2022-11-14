@@ -37,11 +37,11 @@ Per la realizzazione del progetto sono state impiegate le seguenti tecnologie:
 
 <p float="left">
   <img src="./readme_assets/img/html.png" width="100" height="100" />
-  <img src="./readme_assets/img/css.png" width="100" height="100" /> 
   <img src="./readme_assets/img/js.png" width="100" height="100" />
-  BOOTSTRAP
-  WEBPACK
-  AXIOS
+  <img src="./readme_assets/img/sass.png" width="100" height="100" />
+  <img src="./readme_assets/img/bootstrap.png" width="100" height="100" />
+  <img src="./readme_assets/img/webpack.png" width="100" height="100" /> 
+  <img src="./readme_assets/img/axios.png" width="100" height="100" />
 </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -55,13 +55,15 @@ Per la creazione del bundle del progetto è stato utilizzato Webpack, mentre per
 
 Tutto il codice risiede all'interno della cartella `src`, ed è composto dai seguenti files:
 * index.js: entry point dell'applicazione, osservata da webpack per generare il bundle definitivo.
-* index.html: file di template utilizzando da `HtmlWebpackPlugin` per la generazione dell'HTML.
+* index.html: file di template utilizzato da `HtmlWebpackPlugin` per la generazione dell'HTML.
 * style.scss: foglio di stile SASS, preferito al normale CSS per la maggiore organizzazione del codice.
-* ogni altra risorsa (nello specifico: le immagini) è stata aggiunta a questa cartella e includa nel bundle tramite import in index.js
+* ogni altra risorsa (nello specifico: le immagini) è stata aggiunta a questa cartella e inclusa nel bundle tramite import in index.js
 
-Dal lato tecnico, le functions che vengono richiamate dagli elementi HTML (nello specifico, il form di ricerca, i pulsanti per la paginazione e il pulsante di apertura dialog dei dettagli), sono state assegnate all'oggetto built-in `window` per permettere di essere richiamate tramite submit e onclick.
+Dal lato tecnico, le functions che vengono richiamate dagli elementi HTML (nello specifico, il form di ricerca, i pulsanti per la paginazione e il pulsante di apertura dialog dei dettagli), sono state assegnate all'oggetto built-in `window` per permettere di essere richiamate tramite submit e onclick in ecosistema Webpack.
 
 Oltre a questo, per contattare le API GET di ricerca è stata utilizzata la libreria AXIOS, che semplifica notevolmente il recupero della response delle chiamate.
+
+E' stato valutato l'utilizzo di `dotenv` per l'impiego di variabili d'ambiente, ma poichè le API non richiedono delle API KEY, e che non esistono endpoint separati tra test e produzione, si è deciso di non farne uso per non aumentare inutilmente l'overhead della webapp.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
