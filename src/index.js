@@ -190,11 +190,7 @@ function getBookData(clone, book) {
 
         let endpoint = url + book.key + ".json";
 
-        axios.get(endpoint, {
-            params: {
-                jscmd: "viewapi"
-            }
-        }).then(response => {
+        axios.get(endpoint).then(response => {
             populateBookData(modalBookDescription, response);
         }).catch(error => {
             console.error(error);
