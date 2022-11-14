@@ -18,7 +18,7 @@
 ## Introduzione
 
 <div align="center">
-  <img src="./readme_assets/img/appScreen.png" alt="Logo" width="auto" height="300">
+  <img src="./readme_assets/img/BookLady_Logo.svg" alt="Logo" width="auto" height="300">
 </div>
 
 Per il corso avanzato di Javascript, ho realizzato una breve webapp che permetta la consultazione del catalogo online di libri fornito da [Open Library](https://openlibrary.org/), con le seguenti funzionalità:
