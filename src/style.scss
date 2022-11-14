@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color:rgb(211, 224, 240);
+}
+
+img {
+    margin: 80px 0px 15px 0px;
+    height: auto;
+    width: 400px;
+}
+
+input {
+    border-radius: 25px 0px 0px 25px;
+    width: 400px;
+}
+
+#book-title {
+    width: 600px;
+}
+
+#book-authors {
+    font-style: oblique;
+    padding-right: 10px;
+    color: rgb(62, 62, 62);
+    margin-top: 10px;
+}
+
+.main-container {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .input-custom {
+            border-radius: 25px 0px 0px 25px;
+            width: 400px;
+        }
+
+        .btn-border-radius {
+            border-radius: 0px 25px 25px 0px;
+        }
+
+        .results {
+            color: rgb(48, 48, 48);
+            font-size: 13px;
+            margin-top: 30px;
+        }
+    } 
+} 
+
+.book-container {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 25px 0px;
+
+    background-color: white;
+    padding: 20px 20px;
+    min-height: 90px;
+    width: 750px;
+
+    .btn-description {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .btn-book-template {
+            border-radius: 10px 0px;
+        }
+    }
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 750px;;
+    margin-bottom: 15px;
+}
+
+.cover {
+    float: left;
+    margin: 0px 20px 0px 0px !important;
+    width: 150px;
+    height: auto;
+}
+
+.word-break  {
+    overflow-wrap: break-word;
+}
+
+/* BREAKPOINTS */
+
+/*SMALL*/
+@media only screen and (max-width: 575px) {
+   
+    #book-title {
+        width: 250px;
+    }
+
+    img {
+        margin: 80px 0px 15px 0px;
+        height: auto;
+        width: 300px;
+    }
+
+    .sm-my-from {
+        width: 300px;
+    }
+
+    .book-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        width: 300px;
+    
+        .btn-description {
+           margin-top: 10px;
+        }
+    }
+
+    .pagination-buttons {
+        width: 300px;
+    }
+}
+
+
+/*MEDIUM*/
+@media only screen and (max-width: 991px) and (min-width: 576px) {
+
+    #book-title {
+        width: 500px;
+    }
+
+    .book-container {    
+        width: 100%;
+    }
+
+    .pagination-buttons {
+        width: 650px;
+    }
+    
+}
