@@ -20,7 +20,7 @@
         <div class="content-container">
             <img src="./assets/images/BookLady_Logo.svg" alt="Book Lady">
 
-            <form name="myForm" class="d-flex mt-3 sm-my-from" onsubmit="window.search(event)">
+            <form name="searchForm" id="searchForm" class="d-flex mt-3 sm-my-from">
                 <input class="form-control input-custom shadow" type="search" name="searchBar" placeholder="Search">
                 <button class="btn btn-border-radius btn-primary " type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -84,11 +84,9 @@
     <!-- Pagination Template -->
     <template id="pagination-template">
         <div id="pagination-container" class="pagination-buttons">
-            <button id="prev-button" class="btn btn-primary btn-sm" type="button" 
-                onclick="window.changePage('prev')">Previous</button>
+            <button id="prev-button" class="btn btn-primary btn-sm" type="button">Previous</button>
             <span id="pages"></span>
-            <button id="next-button" class="btn btn-primary btn-sm" type="button"
-                onclick="window.changePage('next')">Next</button> 
+            <button id="next-button" class="btn btn-primary btn-sm" type="button">Next</button> 
         </div>
     </template>
 
