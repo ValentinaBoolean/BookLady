@@ -4,15 +4,12 @@ import "./style.scss";
 import "./images/BookLady_Logo.svg"
 import "./images/favicon.png"
 
-// forms
-let searchForm;
-
 // apis
-let url;
-let coverUrl;
+const API_URL = "https://openlibrary.org";
+const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
 // HTML elements
-let mainContainer;
+let searchForm;
 let resultsContainer;
 let booksContainer;
 let paginationContainer;
@@ -27,22 +24,16 @@ let paginationTemplate;
 let currentPageNumber;
 let numberOfPages;
 
-// functions
-window.search = search;
-window.changePage = changePage;
+initApp();
 
-init();
-
-function init() {
+function initApp() {
     // forms
-    searchForm = document.forms.myForm.elements;
-
-    // apis
-    url = "https://openlibrary.org";
-    coverUrl = "https://covers.openlibrary.org/b/id/";
+    searchForm = document.getElementById("searchForm");
+    searchForm.addEventListener("submit", (event) => {
+        searchCategories(event);
+    });
 
     // HTML elements
-    mainContainer = document.getElementById("main-container");
     resultsContainer = document.getElementById("results-container")
     booksContainer = document.getElementById("books-container");
     paginationContainer = document.getElementById("pagination-container");
@@ -58,7 +49,7 @@ function init() {
     numberOfPages = 0;
 }
 
-function search(event) {
+function searchCategories(event) {
     if (event != null && event != undefined) event.preventDefault();
     if (!validateSearch()) return;
     initSearch();
@@ -67,11 +58,11 @@ function search(event) {
 function changePage(direction) {
     if (direction == 'next') {
         currentPageNumber = currentPageNumber + 1;
-        search();
+        searchCategories();
     } else {
         if (currentPageNumber > 1) {
             currentPageNumber = currentPageNumber - 1;
-            search();
+            searchCategories();
         }
     }
 }
@@ -100,7 +91,8 @@ function showSpinner() {
 
 function getBooksList() {
     let offset = (currentPageNumber - 1) * 10;
-    let endpoint = url + "/subjects/" + searchForm.searchBar.value.toLowerCase().trim() + ".json";
+    let jsonString = searchForm.searchBar.value.toLowerCase().trim().replace(/ /g, "_");
+    let endpoint = API_URL + "/subjects/" + jsonString + ".json";
 
     axios.get(endpoint, {
         params: {
@@ -145,12 +137,22 @@ function createPagination(resultsNumber) {
     let pagesText = paginationTemplateClone.getElementById("pages");
     pagesText.innerHTML = currentPageNumber + "/" + numberOfPages;
 
+    let prevButton = paginationTemplateClone.getElementById("prev-button");
+    let nextButton = paginationTemplateClone.getElementById("next-button");
+
     if (currentPageNumber === 1) {
-        paginationTemplateClone.getElementById("prev-button").style.visibility = 'hidden';
+        prevButton.style.visibility = 'hidden';
     }
     if (currentPageNumber === numberOfPages) {
-        paginationTemplateClone.getElementById("next-button").style.visibility = 'hidden';
+        nextButton.style.visibility = 'hidden';
     }
+
+    prevButton.addEventListener("click", () => {
+        changePage('prev')
+    });
+    nextButton.addEventListener("click", () => {
+        changePage('next')
+    });
 
     paginationContainer.append(paginationTemplateClone);
 }
@@ -188,7 +190,7 @@ function getBookData(clone, book) {
     modalBtn.addEventListener("click", function () {
         let modalBookDescription = initBookData(book);
 
-        let endpoint = url + book.key + ".json";
+        let endpoint = API_URL + book.key + ".json";
 
         axios.get(endpoint).then(response => {
             populateBookData(modalBookDescription, response);
@@ -236,7 +238,7 @@ function addBookDescription(response, modalBookDescription) {
 
 function addCoverImage(response, modalBookDescription) {
     if (response.data.covers && response.data.covers.length > 0) {
-        let coverEndpoint = coverUrl + response.data.covers[0] + "-M.jpg";
+        let coverEndpoint = COVER_URL + response.data.covers[0] + "-M.jpg";
         let image = document.createElement("img");
         image.src = coverEndpoint;
         image.classList.add("cover");
